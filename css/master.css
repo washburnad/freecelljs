@@ -9,7 +9,8 @@ body {
 div {
   box-sizing: border-box; }
   div.gameboard {
-    position: absolute;
+    position: relative;
+    margin: auto;
     width: 676px;
     height: 525px; }
   div.freecells {
@@ -37,7 +38,8 @@ div {
   width: 73px;
   height: 97px;
   margin: 4px;
-  border: 1px solid #666666; }
+  border: 1px solid #666666;
+  color: #333333; }
 
 .card {
   position: absolute;
@@ -47,4 +49,4 @@ div {
   height: 97px;
   background-image: url(http://www.jfitz.com/cards/classic-playing-cards.png); }
 
-/*# sourceMappingURL=master.css.css.map */
+/*# sourceMappingURL=master.css.map */

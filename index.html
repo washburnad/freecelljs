@@ -4,18 +4,14 @@
     <title>FreecellJS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' href='css/master.css'>
   </head>
   <body>
     <div class='container'>
       <div class='gameboard'>
         <div class='freecells'>
-          <div class='space'>
-              Freecell
-              <div class='card' data-rank='7' data-suit='hearts'></div>
-          </div>
-          <div class='space'>Freecell
-              <div class='card' data-rank='13' data-suit'diamonds' data-top='0'></div>    
-          </div>
+          <div class='space'>Freecell</div>
+          <div class='space'>Freecell</div>
           <div class='space'>Freecell</div>
           <div class='space'>Freecell</div>
         </div>
@@ -23,22 +19,12 @@
           <div class='space'>Foundation</div>
           <div class='space'>Foundation</div>
           <div class='space'>Foundation</div>
-          <div class='space'>
-              Foundation
-              <div class='card' data-rank='1' data-suit='clubs' data-top='0'></div>
-          </div>
+          <div class='space'>Foundation</div>
         </div>
         <div class='tableau'>
-          <div class='space'>
-              <div class='card' data-rank='3' data-suit='hearts' data-top='0'></div>
-          </div>
-          <div class='space'>
-              
-          </div>
-          <div class='space'>
-              <div class='card' data-rank='11' data-suit='spades' data-top='0'></div>
-              <div class='card' data-rank='9' data-suit='spades' data-top='15px'></div>
-          </div>
+          <div class='space'></div>
+          <div class='space'></div>
+          <div class='space'></div>
           <div class='space'></div>
           <div class='space'></div>
           <div class='space'></div>
@@ -47,5 +33,7 @@
         </div>
       </div>
     </div>
+    <script src='js/deck.js' type='text/javascript'></script>
+    <script src='js/main.js' type='text/javascript'></script>
   </body>
 </html>

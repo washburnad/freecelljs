@@ -22,7 +22,8 @@ div {
     box-sizing: border-box;
     
     &.gameboard {
-        position: absolute;
+        position: relative;
+        margin: auto;
         width: $GAME_WIDTH;
         height: $GAME_HEIGHT;
     }
@@ -56,6 +57,7 @@ div {
     height: $CARD_HEIGHT;
     margin: $MARGIN;
     border: 1px solid #666666;
+    color: #333333;
 }
 
 .card {
