@@ -20,37 +20,41 @@ body {
 
 div {
     box-sizing: border-box;
-    
-    &.gameboard {
-        position: relative;
-        margin: auto;
-        width: $GAME_WIDTH;
-        height: $GAME_HEIGHT;
-    }
-    &.freecells {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: $FREECELL_WIDTH;
-        height: $TOP_ROW_HEIGHT;
-    }
-    &.foundations {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: $FOUNDATION_WIDTH;
-        height: $TOP_ROW_HEIGHT;
-    }
-        &.tableau {
-        position: absolute;
-        top: $TOP_ROW_HEIGHT;
-        left: 0;
-        width: $GAME_WIDTH;
-        height: $TABLEAU_HEIGHT;
-    }
+}    
+
+.gameboard {
+    position: relative;
+    margin: auto;
+    width: $GAME_WIDTH;
+    height: $GAME_HEIGHT;
 }
 
-.space {
+.freecells {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $FREECELL_WIDTH;
+    height: $TOP_ROW_HEIGHT;
+}
+
+.foundations {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: $FOUNDATION_WIDTH;
+    height: $TOP_ROW_HEIGHT;
+}
+
+.tableau {
+    position: absolute;
+    top: $TOP_ROW_HEIGHT;
+    left: 0;
+    width: $GAME_WIDTH;
+    height: $TABLEAU_HEIGHT;
+}
+
+
+.column {
     position: relative;
     display: inline-block;
     width: $CARD_WIDTH;

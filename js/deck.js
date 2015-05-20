@@ -24,13 +24,11 @@ function Card(rank, suit) {
 
   function setDisplayAttributes( card ) {
       var $card_el = $(card.el);
-      console.log( card.rank);
       var rank = parseInt(card.rank);
       var suit = SUITS.indexOf(card.suit);
       var x_offset = - ( CARD_WIDTH * ( rank - 1 ) );
       var y_offset = - ( CARD_HEIGHT * ( suit ) );
       var backgroundPosition = x_offset + 'px ' + y_offset + 'px';
-      console.log(backgroundPosition);
       $card_el.css('backgroundPosition', backgroundPosition); 
   }
 }

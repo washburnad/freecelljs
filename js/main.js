@@ -13,12 +13,30 @@ $(document).ready(function() {
     function Game() {
         this.deck = new Deck();
         this.deck.shuffle();
+
+        this.deal = function() {
+            var column = 1;
+            var top = 0;
+            while ( this.deck.cards.length > 0 ) {
+                var $card_el = $(this.deck.cards.pop().el);
+                var top_string = ( top + 'px' );
+                console.log( $card_el );
+                $card_el.css('top', top_string );
+                $('.tableau .column.'+column).append( $card_el );
+                column += 1;
+                if ( column > 8 ) {
+                    column = 1;
+                    top += 25;
+                }
+            }
+        }
     }
 
-    var myGame = new Game();
-    var position_el = $('.foundations .space').first();
 
-    for (index in myGame.deck.cards) {
-        placeCard( myGame.deck.cards[index].el, position_el );
+    function main() {
+        var myGame = new Game();
+        myGame.deal()
     }
+    
+    main();
 });
