@@ -1,0 +1,68 @@
+$CARD_WIDTH: 73px;
+$CARD_HEIGHT: 97px;
+$MARGIN: 4px;
+$FREECELL_WIDTH: ($CARD_WIDTH + 2 * $MARGIN) * 4 + 14;
+$FOUNDATION_WIDTH: $FREECELL_WIDTH;
+$GAME_WIDTH: $FREECELL_WIDTH * 2;
+$TOP_ROW_HEIGHT: $CARD_HEIGHT + 20;
+$TABLEAU_HEIGHT: $CARD_HEIGHT * 4;
+$GAME_HEIGHT: $TOP_ROW_HEIGHT + $TABLEAU_HEIGHT + 20;
+
+body, 
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: green;
+}
+
+div {
+    box-sizing: border-box;
+    
+    &.gameboard {
+        position: absolute;
+        width: $GAME_WIDTH;
+        height: $GAME_HEIGHT;
+    }
+    &.freecells {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $FREECELL_WIDTH;
+        height: $TOP_ROW_HEIGHT;
+    }
+    &.foundations {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: $FOUNDATION_WIDTH;
+        height: $TOP_ROW_HEIGHT;
+    }
+        &.tableau {
+        position: absolute;
+        top: $TOP_ROW_HEIGHT;
+        left: 0;
+        width: $GAME_WIDTH;
+        height: $TABLEAU_HEIGHT;
+    }
+}
+
+.space {
+    position: relative;
+    display: inline-block;
+    width: $CARD_WIDTH;
+    height: $CARD_HEIGHT;
+    margin: $MARGIN;
+    border: 1px solid #666666;
+}
+
+.card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $CARD_WIDTH;
+    height: $CARD_HEIGHT;
+    background-image: url(http://www.jfitz.com/cards/classic-playing-cards.png);
+}

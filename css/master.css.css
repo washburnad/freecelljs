@@ -1,0 +1,50 @@
+body,
+html {
+  width: 100%;
+  height: 100%; }
+
+body {
+  background-color: green; }
+
+div {
+  box-sizing: border-box; }
+  div.gameboard {
+    position: absolute;
+    width: 676px;
+    height: 525px; }
+  div.freecells {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 338px;
+    height: 117px; }
+  div.foundations {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 338px;
+    height: 117px; }
+  div.tableau {
+    position: absolute;
+    top: 117px;
+    left: 0;
+    width: 676px;
+    height: 388px; }
+
+.space {
+  position: relative;
+  display: inline-block;
+  width: 73px;
+  height: 97px;
+  margin: 4px;
+  border: 1px solid #666666; }
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 73px;
+  height: 97px;
+  background-image: url(http://www.jfitz.com/cards/classic-playing-cards.png); }
+
+/*# sourceMappingURL=master.css.css.map */
