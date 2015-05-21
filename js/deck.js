@@ -3,10 +3,15 @@ var CARD_HEIGHT = 97;
 var SUITS = ['clubs', 'spades', 'hearts', 'diamonds'];
   
 function Card(rank, suit) {
-  
-  this.rank = rank;
-  this.suit = suit;
-  this.color = function() {
+  this.el = document.createElement('div');
+  $el = this.el;
+  $el.className = 'card';
+  $el.setAttribute('data-rank', rank);
+  $el.setAttribute('data-suit', suit);
+  $el.setAttribute('data-top', '0');
+  $el.rank = rank;
+  $el.suit = suit;
+  $el.color = function() {
     if ( ( suit == 'clubs' ) || ( suit == 'spades' ) ) {
       return 'black'
     } else if ( suit == 'hearts' || suit == 'diamonds' ) {
@@ -15,19 +20,15 @@ function Card(rank, suit) {
       return 'none'
     }
   }();
-  this.el = document.createElement('div');
-  this.el.className = 'card';
-  this.el.setAttribute('data-rank', rank);
-  this.el.setAttribute('data-suit', suit);
-  this.el.setAttribute('data-top', '0');
-  setDisplayAttributes( this );
 
-  function setDisplayAttributes( card ) {
-      var $card_el = $(card.el);
-      var rank = parseInt(card.rank);
-      var suit = SUITS.indexOf(card.suit);
+  setDisplayAttributes( $(this.el) );
+  
+
+  function setDisplayAttributes( $card_el ) {
+      var rank = $card_el[0].rank;
+      var suit_number = SUITS.indexOf($card_el[0].suit);
       var x_offset = - ( CARD_WIDTH * ( rank - 1 ) );
-      var y_offset = - ( CARD_HEIGHT * ( suit ) );
+      var y_offset = - ( CARD_HEIGHT * ( suit_number ) );
       var backgroundPosition = x_offset + 'px ' + y_offset + 'px';
       $card_el.css('backgroundPosition', backgroundPosition); 
   }

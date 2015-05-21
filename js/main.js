@@ -2,25 +2,34 @@ $(document).ready(function() {
     var CARD_WIDTH = 73;
     var CARD_HEIGHT = 97;
     var $CARD_OFFSET = 25;
-
     var SUITS = ['clubs', 'spades', 'hearts', 'diamonds'];
+
+    function cardSelected() {
+        var selected_ary = $('.card.selected');
+        return selected_ary[0]
+    }
 
     function deselectCard( $card_el ) {
         $card_el.removeClass('selected');
     }
 
-    function isTopCard( card_el ) {
-        return $(card_el).is(':last-child');
+    function isEmpty( $column_el ) {
+        return ( $column_el.children().length == 0 )
     }
 
-    function isSelected( card_el ) {
-        return $(card_el).hasClass('selected');
+    function isSelected( $card_el ) {
+        return $card_el.hasClass('selected');
+    }
+
+    function isTopCard( $card_el ) {
+        return $card_el.is(':last-child');
     }
 
     function moveCard( $card_el, $destination_el ) {
         console.log('move card', $card_el, $destination_el );
         deselectCard( $card_el );
-        $destination_el.closest('.column').append( $card_el );
+        placeCard( $card_el, $destination_el.closest('.column') );
+        // $destination_el.closest('.column').append( $card_el );
         setCSSTop( $card_el );
     }
 
@@ -28,16 +37,11 @@ $(document).ready(function() {
         $card_el.addClass('selected');
     }
 
-    function cardSelected() {
-        var selected_ary = $('.card.selected');
-        return selected_ary[0]
-    }
-
     function setCSSTop( $card_el ) {
         var $parent_el = $card_el.parent();
         console.log($parent_el);
         var top = 0;
-        if ( $parent_el.parent().hasClass('tableau') ) {
+        if ( $parent_el.data('column-type') == 'tableau' ) {
             var children = $parent_el.children();
             var child_number = children.length;
             top = ( ( child_number - 1 ) * $CARD_OFFSET) + 'px';
@@ -45,8 +49,12 @@ $(document).ready(function() {
         $card_el.css('top' , top)
     }
 
-    function placeCard( card_el, position_el ) {
-        position_el.append( card_el );
+    function placeCard( $card_el, $position_el ) {
+        $position_el.append( $card_el );
+    }
+
+    function isValidMove( $card_el, $destination_el ) {
+        
     }
 
     function Game() {
@@ -79,16 +87,17 @@ $(document).ready(function() {
 
     // card click handler
     $('.card').click( function() {
+        var $this = $(this);
         console.log( cardSelected() );
         var cardAlreadySelected = cardSelected();
-        if ( isTopCard( this ) ) {
-            if ( isSelected( this ) ) {
-                deselectCard( $(this) );
+        if ( isTopCard( $this ) ) {
+            if ( isSelected( $this ) ) {
+                deselectCard( $this );
             } else {
                 if ( cardAlreadySelected != null ) {
-                    moveCard( $(cardAlreadySelected), $(this) );
+                    moveCard( $(cardAlreadySelected), $this );
                 } else {
-                    selectCard( $(this) );
+                    selectCard( $this );
                 }  
             };
         };
@@ -101,10 +110,6 @@ $(document).ready(function() {
         mouseup( function() {
             $(this).removeClass('show');
         });
-
-    function isEmpty( $column_el ) {
-        return ( $column_el.children().length == 0 )
-    }
 
     $('.column').click( function() {
         var $this = $(this);
