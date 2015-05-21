@@ -71,4 +71,8 @@ div {
     width: $CARD_WIDTH;
     height: $CARD_HEIGHT;
     background-image: url(http://www.jfitz.com/cards/classic-playing-cards.png);
+
+    &.selected {
+      left: 5px;
+    }
 }

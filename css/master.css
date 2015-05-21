@@ -52,5 +52,7 @@ div {
   width: 73px;
   height: 97px;
   background-image: url(http://www.jfitz.com/cards/classic-playing-cards.png); }
+  .card.selected {
+    left: 5px; }
 
 /*# sourceMappingURL=master.css.map */

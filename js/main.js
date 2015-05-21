@@ -4,21 +4,26 @@ $(document).ready(function() {
     var SUITS = ['clubs', 'spades', 'hearts', 'diamonds'];
 
 
-
     function placeCard( card_el, position_el ) {
         // displayCard( card_el );
         position_el.append( card_el );
     }
 
+    function isTopCard( card_el ) {
+        var topCard = $(card_el).is(':last-child');
+        return topCard
+    }
+
     function Game() {
-        this.deck = new Deck();
-        this.deck.shuffle();
+        var deck = this.deck;
+        deck = new Deck();
+        deck.shuffle();
 
         this.deal = function() {
             var column = 1;
             var top = 0;
-            while ( this.deck.cards.length > 0 ) {
-                var $card_el = $(this.deck.cards.pop().el);
+            while ( deck.cards.length > 0 ) {
+                var $card_el = $(deck.cards.pop().el);
                 var top_string = ( top + 'px' );
                 console.log( $card_el );
                 $card_el.css('top', top_string );
@@ -39,4 +44,11 @@ $(document).ready(function() {
     }
     
     main();
+
+    // card click handler
+    $('.card').click( function() {
+        if ( isTopCard( this ) ) {
+            $(this).addClass('selected');
+        };
+    });
 });
