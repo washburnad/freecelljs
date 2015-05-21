@@ -1,4 +1,4 @@
-$CARD_WIDTH: 73px;
+$CARD_WIDTH: 74px;
 $CARD_HEIGHT: 97px;
 $MARGIN: 4px;
 $FREECELL_WIDTH: ($CARD_WIDTH + 2 * $MARGIN) * 4 + 14;
@@ -74,5 +74,9 @@ div {
 
     &.selected {
       left: 5px;
+    }
+
+    &.show {
+      z-index: 10;
     }
 }

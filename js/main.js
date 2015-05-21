@@ -5,13 +5,15 @@ $(document).ready(function() {
 
 
     function placeCard( card_el, position_el ) {
-        // displayCard( card_el );
         position_el.append( card_el );
     }
 
     function isTopCard( card_el ) {
-        var topCard = $(card_el).is(':last-child');
-        return topCard
+        return $(card_el).is(':last-child');
+    }
+
+    function isSelected( card_el ) {
+        return $(card_el).hasClass('selected');
     }
 
     function Game() {
@@ -48,7 +50,21 @@ $(document).ready(function() {
     // card click handler
     $('.card').click( function() {
         if ( isTopCard( this ) ) {
-            $(this).addClass('selected');
+            if ( isSelected( this ) ) {
+                $(this).removeClass('selected');
+            } else {
+                $(this).addClass('selected');
+            };
         };
     });
+
+    $('.card').
+        mousedown( function() {
+            $(this).addClass('show');
+        }).
+        mouseup( function() {
+            $(this).removeClass('show');
+        });
+
+
 });
