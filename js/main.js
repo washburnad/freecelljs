@@ -5,8 +5,8 @@ $(document).ready(function() {
 
     var SUITS = ['clubs', 'spades', 'hearts', 'diamonds'];
 
-    function deselectCard( card_el ) {
-        $(card_el).removeClass('selected');
+    function deselectCard( $card_el ) {
+        $card_el.removeClass('selected');
     }
 
     function isTopCard( card_el ) {
@@ -19,12 +19,13 @@ $(document).ready(function() {
 
     function moveCard( $card_el, $destination_el ) {
         console.log('move card', $card_el, $destination_el );
-        $card_el.css('top','0');
-        $destination_el.append( $card_el );
+        deselectCard( $card_el );
+        $destination_el.closest('.column').append( $card_el );
+        setCSSTop( $card_el );
     }
 
-    function selectCard( card_el ) {
-        $(card_el).addClass('selected');
+    function selectCard( $card_el ) {
+        $card_el.addClass('selected');
     }
 
     function cardSelected() {
@@ -33,9 +34,14 @@ $(document).ready(function() {
     }
 
     function setCSSTop( $card_el ) {
-        var children = $card_el.parent().children();
-        var child_number = children.length;
-        var top = (child_number * $CARD_OFFSET) + 'px';
+        var $parent_el = $card_el.parent();
+        console.log($parent_el);
+        var top = 0;
+        if ( $parent_el.parent().hasClass('tableau') ) {
+            var children = $parent_el.children();
+            var child_number = children.length;
+            top = ( ( child_number - 1 ) * $CARD_OFFSET) + 'px';
+        };
         $card_el.css('top' , top)
     }
 
@@ -74,13 +80,16 @@ $(document).ready(function() {
     // card click handler
     $('.card').click( function() {
         console.log( cardSelected() );
-
+        var cardAlreadySelected = cardSelected();
         if ( isTopCard( this ) ) {
             if ( isSelected( this ) ) {
-                deselectCard( this );
+                deselectCard( $(this) );
             } else {
-                // moveCard( $(this), $('.foundations .column.1') );
-                selectCard( this );
+                if ( cardAlreadySelected != null ) {
+                    moveCard( $(cardAlreadySelected), $(this) );
+                } else {
+                    selectCard( $(this) );
+                }  
             };
         };
     });
@@ -93,5 +102,15 @@ $(document).ready(function() {
             $(this).removeClass('show');
         });
 
+    function isEmpty( $column_el ) {
+        return ( $column_el.children().length == 0 )
+    }
 
+    $('.column').click( function() {
+        var $this = $(this);
+        var cardAlreadySelected = cardSelected();
+        if ( ( isEmpty( $this ) ) && ( cardAlreadySelected != null ) ) {
+            moveCard( $(cardAlreadySelected), $(this) );
+        }
+    })
 });
