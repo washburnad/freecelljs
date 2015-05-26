@@ -1,3 +1,55 @@
+
+function availableFreecell() {
+    $freecells = $('.freecells').children();
+    var $return_el = null;
+    $freecells.each( function() {
+        if ( isEmpty( $(this) ) ) {
+            $return_el = $(this);
+        }
+    });
+
+    return $return_el
+}
+
+function availableFoundation( $card_el ) {
+    $foundations = $('.foundations').children();
+    var $return_el = null;
+    $foundations.each( function() {
+        $foundation_top_card = getFoundationTopCard( $(this) );
+        if ( isValidFoundationMove( $card_el, $foundation_top_card ) ) {
+            $return_el = $(this);
+        }
+    });
+
+    return $return_el;
+}
+
+function getFoundationTopCard( $foundation_el ) {
+    return $foundation_el.children().last();
+}
+
+function availableTableau() {
+    return null
+}
+
+function bestMove( $card_el ) {
+    $availableFoundation = availableFoundation( $card_el );
+    if ( $availableFoundation ) {
+        return $availableFoundation;
+    }
+
+    $availableFreecell = availableFreecell();
+    if ( $availableFreecell ) {
+        return $availableFreecell;
+    }
+
+    $availableTableau = availableTableau();
+    if ( $availableTableau ) {
+        return $availableTableau;
+    }
+    return null
+}
+
 function isValidMove( $card_el, $destination_el ) {
     var dest_type = columnType( $destination_el )
     switch (dest_type) {
@@ -47,8 +99,9 @@ function isValidFoundationMove( $card_el, $destination_el ) {
         $dest_suit = $suit;
         $dest_rank = 0;
     } else {
-        $dest_rank = $destination_el[0].rank;
-        $dest_suit = $destination_el[0].suit;
+        $last_card = ( $destination_el.hasClass('card') ) ? $destination_el : $destination_el.children().last();
+        $dest_rank = $last_card[0].rank;
+        $dest_suit = $last_card[0].suit;
     }
 
     if ( ( $suit == $dest_suit ) && ( $rank == $dest_rank + 1 ) ) {
@@ -57,3 +110,5 @@ function isValidFoundationMove( $card_el, $destination_el ) {
         return false
     }
 }
+
+

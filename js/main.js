@@ -36,6 +36,10 @@ $(document).ready(function() {
                 var cardAlreadySelected = cardSelected();
                 if ( isTopCard( $this ) ) {
                     if ( isSelected( $this ) ) {
+                        $bestMove = bestMove( $this );
+                        if ( $bestMove ){
+                            moveCard( $this, $bestMove )
+                        };
                         deselectCard( $this );
                     } else {
                         if ( cardAlreadySelected != null ) {
