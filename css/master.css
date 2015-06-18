@@ -51,7 +51,7 @@ div {
   left: 0;
   width: 74px;
   height: 97px;
-  background-image: url(http://www.jfitz.com/cards/classic-playing-cards.png); }
+  background-image: url(../images/digital-playing-cards.jpg); }
   .card.selected {
     left: 5px; }
   .card.show {
